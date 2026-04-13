@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(C:\\\\Users\\\\kings\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python311\\\\Scripts\\\\pip.exe install:*)"
+    ]
+  }
+}

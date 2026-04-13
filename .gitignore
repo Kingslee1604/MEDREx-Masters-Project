@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model files (large — regenerated on first run)
+backend/models/tfidf_lr.pkl
+backend/models/tfidf_vec.pkl
+
+# Vector store (large — regenerated on first run)
+backend/vector_store/
+
+# Dataset (large files — not pushed to GitHub)
+DataSet/TCGA_Reports.csv/
+DataSet/*.csv
+DataSet/*.tsv
+DataSet/*.p
+DataSet/TNM_Stage/
+DataSet/Clinical_Endpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Generated reports (can be regenerated)
+proof_report.html
+proof_report.xlsx
+prediction_explainer.xlsx
+
+# Temp
+*.tmp
+*.log
