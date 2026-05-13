@@ -8,7 +8,7 @@ Prerequisites:
   2. Bio_ClinicalBERT at demo/ProjectCode/method3_best_model/
 
 Run:
-  streamlit run demo/explainer.py
+  streamlit run demo/explainer.py - This application is for DEMO
 """
 
 import os, sys, json, time, warnings
