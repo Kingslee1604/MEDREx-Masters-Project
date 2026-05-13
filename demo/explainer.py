@@ -2086,11 +2086,15 @@ with tab_cmp:
 
     with col_table:
         st.markdown("**Summary Table**")
+        # Reverse so table is descending (highest accuracy first)
+        meth_d = list(reversed(meth_s))
+        acc_d  = list(reversed(acc_s))
+        f1_d   = list(reversed(f1_s))
         df_ours = pd.DataFrame({
-            "Method": meth_s,
-            "Accuracy": [f"{a:.2f}%" for a in acc_s],
-            "F1 (weighted)": [f"{f:.1f}%" for f in f1_s],
-            "vs Baseline": [f"+{a-95.31:.2f}%" if a >= 95.31 else f"{a-95.31:.2f}%" for a in acc_s],
+            "Method": meth_d,
+            "Accuracy": [f"{a:.2f}%" for a in acc_d],
+            "F1 (weighted)": [f"{f:.1f}%" for f in f1_d],
+            "vs Baseline": [f"+{a-95.31:.2f}%" if a >= 95.31 else f"{a-95.31:.2f}%" for a in acc_d],
         })
         st.dataframe(df_ours.set_index("Method"), use_container_width=True)
 
