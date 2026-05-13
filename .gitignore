@@ -15,6 +15,11 @@ env/
 .env/
 .venv/
 
+# API keys — never commit these
+.env
+**/.env
+*.env
+
 # Jupyter
 .ipynb_checkpoints/
 
