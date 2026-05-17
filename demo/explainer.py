@@ -589,6 +589,7 @@ Read report → count 23,818 words → multiply by learned weights → pick the 
             st.markdown("**Step 4 — Final Answer**")
             st.markdown(f"""
             <div style="background:{'#d4edda' if correct else '#f8d7da'};
+                        color:{'#155724' if correct else '#721c24'};
                         padding:16px;border-radius:8px;margin-bottom:12px">
             <b style="font-size:1.6em;color:{'#155724' if correct else '#721c24'}">{pred}</b><br>
             <i>{CANCER_NAMES.get(pred,'')}</i><br><br>
@@ -953,6 +954,7 @@ that already filter out noise and amplify rare diagnostic words.
             st.markdown("**Step 4 — Final Answer**")
             st.markdown(f"""
             <div style="background:{'#d4edda' if correct else '#f8d7da'};
+                        color:{'#155724' if correct else '#721c24'};
                         padding:16px;border-radius:8px;margin-bottom:12px">
             <b style="font-size:1.6em;color:{'#155724' if correct else '#721c24'}">{pred}</b><br>
             <i>{CANCER_NAMES.get(pred,'')}</i><br><br>
@@ -1387,6 +1389,7 @@ The +1.01% improvement comes entirely from the **maximum-margin criterion** — 
             st.markdown("**Step 4 — Final Answer**")
             st.markdown(f"""
             <div style="background:{'#d4edda' if correct else '#f8d7da'};
+                        color:{'#155724' if correct else '#721c24'};
                         padding:16px;border-radius:8px;margin-bottom:12px">
             <b style="font-size:1.6em;color:{'#155724' if correct else '#721c24'}">{pred}</b><br>
             <i>{CANCER_NAMES.get(pred,'')}</i><br><br>

@@ -242,7 +242,7 @@ def step4_svm(X_train_tfidf, X_test_tfidf, y_train, y_test, vec):
     subsection("Class weights")
     from sklearn.utils.class_weight import compute_class_weight
     classes = np.array(sorted(y_train.unique()))
-    weights = compute_class_weight("balanced", classes=classes, y=y_train)
+    weights = compute_class_weight("balanced", classes=classes, y=y_train) #helps to pay more attention on more cancer types
     wt_dict = dict(zip(classes, weights))
     log.info("  Class weights assigned to each cancer type:")
     for code in sorted(wt_dict, key=lambda c: wt_dict[c], reverse=True):
