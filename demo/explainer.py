@@ -263,6 +263,7 @@ with st.sidebar:
         "Method 3 (BERT)":       "94.57%",
         "Method 4 (Emb k-NN)":   "90.13%",
         "Method 5 (RAG+LLM)":    "64.00%",
+        "Method 6 (RAG+OpenAI)": "89.00%",
     }
     for method, acc in results_data.items():
         st.markdown(f"- **{method}**: {acc}")

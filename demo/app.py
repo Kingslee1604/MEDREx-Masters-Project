@@ -222,10 +222,11 @@ def main():
         st.divider()
         st.markdown("### Model Status")
         st.success(f"✅ TF-IDF + LR — {acc*100:.1f}%")
-        st.info("🔄 TF-IDF + SVM — In Progress")
-        st.warning("📋 BERT — Planned")
-        st.warning("📋 Embedding k-NN — Planned")
-        st.warning("📋 RAG + LLM — Planned")
+        st.success("✅ TF-IDF + SVM — 97.37%")
+        st.success("✅ BERT (Bio_ClinicalBERT) — 94.57%")
+        st.success("✅ Embedding k-NN — 90.13%")
+        st.success("✅ RAG + LLM (Ollama) — 64.00%")
+        st.success("✅ RAG + LLM (OpenAI) — 89.00%")
 
     # ── Tabs ──────────────────────────────────────────────────────────────────
     tab1, tab2, tab3, tab4 = st.tabs([
@@ -368,18 +369,19 @@ def main():
     # TAB 3 — METHOD COMPARISON
     # ════════════════════════════════════════════════════════════════════════
     with tab3:
-        st.subheader("5-Method Evaluation Framework")
+        st.subheader("6-Method Evaluation Framework")
         st.markdown("""
-        We test 5 fundamentally different NLP approaches on the same 9,523-report dataset
+        We test 6 fundamentally different NLP approaches on the same 9,523-report dataset
         to scientifically justify why MEDREx uses RAG. Each answers: **"Is added complexity worth the accuracy gain?"**
         """)
 
         methods = [
-            ("1", "TF-IDF + Logistic Regression", "Traditional ML",   "✅ Done",    f"{acc*100:.1f}%", "No",      "Yes"),
-            ("2", "TF-IDF + SVM",                 "Traditional ML",   "🔄 Next",    "—",                "No",      "Yes"),
-            ("3", "BERT (Bio_ClinicalBERT)",       "Transformer",      "📋 Planned", "—",                "Yes",     "Partial"),
-            ("4", "Embedding Similarity (k-NN)",  "Semantic Search",  "📋 Planned", "—",                "No",      "Yes"),
-            ("5", "RAG + LLM (MEDREx Core)",       "LLM + Retrieval",  "📋 Planned", "—",                "Yes",     "Partial"),
+            ("1", "TF-IDF + Logistic Regression", "Traditional ML",   "✅ Done", f"{acc*100:.1f}%", "No",  "Yes"),
+            ("2", "TF-IDF + SVM",                 "Traditional ML",   "✅ Done", "97.37%",           "No",  "Yes"),
+            ("3", "BERT (Bio_ClinicalBERT)",       "Transformer",      "✅ Done", "94.57%",           "Yes", "Partial"),
+            ("4", "Embedding Similarity (k-NN)",  "Semantic Search",  "✅ Done", "90.13%",           "No",  "Yes"),
+            ("5", "RAG + LLM (Ollama/llama3.2)",  "LLM + Retrieval",  "✅ Done", "64.00%",           "No",  "Partial"),
+            ("6", "RAG + LLM (OpenAI gpt-4o-mini)","LLM + Retrieval", "✅ Done", "89.00%",           "No",  "Partial"),
         ]
         df_m = pd.DataFrame(methods, columns=["#", "Method", "Category", "Status", "Accuracy", "Needs GPU", "Explainable"])
         st.dataframe(df_m, use_container_width=True, hide_index=True)
@@ -388,11 +390,11 @@ def main():
 
         c1, c2 = st.columns(2)
         with c1:
-            st.markdown("#### Accuracy Progress")
-            method_names = ["TF-IDF\n+ LR", "TF-IDF\n+ SVM", "BERT", "Embedding\nk-NN", "RAG\n+ LLM"]
-            values = [acc * 100, 0, 0, 0, 0]
-            bar_colors = ["#1e3a5f" if v > 0 else "#e2e8f0" for v in values]
-            labels = [f"{v:.1f}%" if v > 0 else "TBD" for v in values]
+            st.markdown("#### Accuracy — All 6 Methods")
+            method_names = ["M1\nTF-IDF+LR", "M2\nTF-IDF+SVM", "M3\nBERT", "M4\nEmb k-NN", "M5\nRAG+Ollama", "M6\nRAG+OpenAI"]
+            values = [acc * 100, 97.37, 94.57, 90.13, 64.00, 89.00]
+            bar_colors = ["#1e3a5f", "#2ecc71", "#e67e22", "#e74c3c", "#9b59b6", "#1abc9c"]
+            labels = [f"{v:.1f}%" for v in values]
 
             fig3 = go.Figure(go.Bar(
                 x=method_names, y=values,
@@ -402,7 +404,7 @@ def main():
             fig3.update_layout(
                 yaxis=dict(range=[0, 105], title="Test Accuracy (%)"),
                 plot_bgcolor="white", paper_bgcolor="white",
-                height=320, margin=dict(l=5, r=5, t=10, b=5)
+                height=360, margin=dict(l=5, r=5, t=10, b=5)
             )
             st.plotly_chart(fig3, use_container_width=True)
 
@@ -415,7 +417,8 @@ def main():
             | TF-IDF + SVM | Legal document classification |
             | BERT | Epic (77% US hospitals), Google Health |
             | Embedding k-NN | PubMed semantic search, Mayo Clinic |
-            | RAG + LLM | Suki AI, Azure Health Bot, Epic |
+            | RAG + LLM (local) | HIPAA-safe on-premise deployments |
+            | RAG + LLM (OpenAI) | Suki AI, Azure Health Bot, Epic |
             """)
             st.info(
                 f"**Reference (Cedars-Sinai):** BoW + LR = **95.31%** on 32 classes\n\n"
