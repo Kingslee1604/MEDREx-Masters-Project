@@ -44,7 +44,7 @@ All methods use the same stratified 70/30 split (`random_state=42`): 6,666 train
 
 ```bash
 git clone -b submission https://github.com/Kingslee1604/MEDREx-Masters-Project.git
-cd MastersProject
+cd MEDREx-Masters-Project
 ```
 
 ### Step 2 — (Optional) Create a virtual environment
@@ -68,7 +68,7 @@ pip install -r demo/requirements.txt
 Every script, `demo/explainer.py` and `demo/save_models.py` sets `BASE_DIR` near the top to the original author's Windows path. Change it to the folder where you cloned the repo:
 
 ```python
-BASE_DIR = r"C:\path\to\MastersProject"
+BASE_DIR = r"C:\path\to\MEDREx-Masters-Project"
 ```
 
 ### Step 5 — Set up API key (Method 6 only)
@@ -96,7 +96,7 @@ The Cedars-Sinai, Method 1 and Method 2 tabs use the models already saved in `de
 ## Project Structure
 
 ```
-MastersProject/
+MEDREx-Masters-Project/
 ├── README.md
 ├── PROJECT_DETAILS.md                       # Full technical documentation
 ├── demo/
