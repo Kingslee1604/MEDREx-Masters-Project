@@ -63,6 +63,14 @@ source venv/bin/activate
 pip install -r demo/requirements.txt
 ```
 
+Then download the NLTK data used by the Cedars-Sinai baseline, `save_models.py` and the demo UI (one time only):
+
+```bash
+python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('stopwords')"
+```
+
+> The scripts also try to download this data silently when they start. That download fails without internet access or write permission to the NLTK data folder, and tokenization then errors out. Running the command above once avoids this.
+
 ### Step 4 — Set the project path
 
 Every script, `demo/explainer.py` and `demo/save_models.py` sets `BASE_DIR` near the top to the original author's Windows path. Change it to the folder where you cloned the repo:
@@ -90,6 +98,35 @@ streamlit run demo/explainer.py
 Open your browser and go to: **http://localhost:8501**
 
 The Cedars-Sinai, Method 1 and Method 2 tabs use the models already saved in `demo/saved_models/`. To rebuild those models, run `python demo/save_models.py`; this needs the dataset.
+
+---
+
+## Running Individual Method Scripts
+
+Each method can also be run as a standalone script from the repo root. Every script prints a step-by-step log and saves it to `demo/ProjectCode/output/`. All of them need the dataset in `DataSet/` (see [Dataset Note](#dataset-note)).
+
+```bash
+# Cedars-Sinai baseline — BoW + Logistic Regression and Random Forest (~10–25 min)
+python demo/CedarCinaiCode/cedars_sinai_pipeline.py
+
+# Method 1 — TF-IDF + Logistic Regression
+python demo/ProjectCode/method1_tfidf_logistic_regression.py
+
+# Method 2 — TF-IDF + SVM
+python demo/ProjectCode/method2_tfidf_svm.py
+
+# Method 3 — BERT (evaluates the downloaded model in demo/ProjectCode/method3_best_model/)
+python demo/ProjectCode/method3_evaluate_local.py
+
+# Method 4 — Embedding similarity k-NN (also builds the embedding cache for Methods 5 and 6)
+python demo/ProjectCode/method4_embedding_knn.py
+
+# Method 5 — RAG + Ollama (needs Ollama: https://ollama.com, then `ollama pull llama3.2`)
+python demo/ProjectCode/method5_rag_llm.py
+
+# Method 6 — RAG + OpenAI (needs OPENAI_API_KEY in demo/ProjectCode/.env)
+python demo/ProjectCode/method6_rag_openai.py
+```
 
 ---
 
